@@ -1,0 +1,17 @@
+[Unit]
+Description=idp web manager
+
+[Service]
+ExecStart=/home/ego2509/server-main/main.js
+Restart=always
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+#User=nobody -> only for non-root
+#Group=nogroup -> only for non-root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/ego2509/server-main/
+
+[Install]
+WantedBy=multi-user.target
+
+# code taken from https://stackoverflow.com/questions/4018154/how-do-i-run-a-node-js-app-as-a-background-service/29042953#29042953

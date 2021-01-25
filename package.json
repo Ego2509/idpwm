@@ -1,0 +1,16 @@
+{
+  "name": "idpwm",
+  "version": "1.0.0",
+  "description": "idp web manager",
+  "main": "main.js",
+  "author": "idp-group",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "googleapis": "39",
+    "http": "^0.0.1-security",
+    "http-debug": "^0.1.2",
+    "path": "^0.12.7"
+  }
+}
