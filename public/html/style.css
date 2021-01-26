@@ -1,0 +1,152 @@
+:root {
+  --color-let-bor: darkblue;
+  --color-s: aquamarine;
+  --color-bg: lightcyan;
+  --color4: aquamarine;
+  --color5: white;
+  --color-ph: rgba(37, 0, 139, 0.508);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  //border: solid 1px;
+  text-align: center;
+  //border-radius: 5px;
+  color: var(--color-let-bor);
+}
+
+.centered-float{
+  margin-left: 4%;
+  margin-right: 4%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#central-login, #login-area{
+  //border: solid 2px;
+  //border-radius: 1%;
+  margin-top: 0;
+}
+
+#central-login{
+  height: 90%;
+  margin-left: calc(99%/2 - 450px/2 );
+  width: 450px;
+  //margin-right: 30%;
+  border: none;
+  border-left: solid 1px;
+  border-right: solid 1px;
+  border-radius: 0px;
+  border-color: var(--color-let-bor);
+  background-color: var(--color-bg);
+}
+
+.l1{
+  float: left;
+  width: 40%;
+  height: 100%;
+}
+
+.r1{
+  float: right;
+  width: 40%;
+  height: 10%;
+}
+
+.fh{
+  height: 10%;
+  margin-top: 0%;
+  margin-bottom: 3%;
+}
+
+
+#sign{
+  height: 10%;
+}
+
+#login-area input{
+  width: 100%;
+  text-align: left;
+  padding: 2%;
+  border: none;
+  border-bottom: solid 1px;
+}
+
+#login-area label{
+  float: right;
+} 
+
+.c{
+  border: solid 1px;
+  border-radius: 50%;
+  border-color: var(--color-let-bg);
+  height: 100px;
+  width:  100px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.rect-border{
+  border: solid 1px;
+  border-color: var(--color-let-bor);
+}
+
+.light-area, .light-area *{
+  background-color: var(--color-bg);
+}
+
+.light-area{
+  border: solid var(--color-let-bor) 1px;
+  padding: 0.3em 1em 0.3em 1em;
+}
+
+.light-area *{
+  border-radius: 10px;
+}
+
+.s{
+  padding-top: 1em;
+  height: 2em;
+}
+
+#s-in, #s-up{
+  background-color: var(--color-s);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--color-ph);
+  opacity: 1; /* Firefox */
+}
+
+#login-box{
+  border: solid var(--color-let-bor) 1px;
+  padding: 1em 1em 0em 1em;
+  background-color: var(--color5);
+}
+
+#udea-logo{
+  background: url("./images/udea_logo.png");
+  
+}
+
+#idp-logo{
+  background: url("./images/idp_logo.png");
+}
+
+#jmf-logo{
+  margin-top: -5%;
+  background: url("./images/jmf_logo.jpg");
+  height: 120px;
+}
+
+.custom-i{
+  background-position: 50% 50% !important;;
+  background-size: cover !important;
+}
+
+h1{
+  font-size: 1.4em;
+}
