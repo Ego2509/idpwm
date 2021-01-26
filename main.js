@@ -18,3 +18,12 @@ http.debug = 2;
 
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
+
+//Login Sistem
+
+app.post('/',(req,res)=>{
+    console.log('POST /')
+    //console.dir(request.body)
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.end('thanks')
+})
