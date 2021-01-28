@@ -58,7 +58,7 @@ window.onload=()=>{
                 return res
             })
             .then(res => {
-                res.json().then(data=>{
+                res.then(data=>{
                     console.log(data)
                 })
             })
