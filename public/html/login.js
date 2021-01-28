@@ -55,13 +55,17 @@ window.onload=()=>{
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
-                return res
             })
             .then(res => {
-                console.log(res).catch(error => {gettingMAD()})
-                console.dir(res).catch(error => {gettingMAD()})
-            })
-            .catch(error => {
+                res.json()
+                // try {
+                //     console.log(res)
+                //     console.dir(res)
+                // } catch (error) {
+                //     gettingMAD()
+            }).then(data => {
+                console.log('data:', data);
+            }).catch(error => {
                 alert(error);
             })
         
