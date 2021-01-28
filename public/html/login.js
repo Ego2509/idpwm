@@ -52,7 +52,8 @@ window.onload=()=>{
                 console.log("resok: "+res.ok)
                 console.log("res: "+res)
                 if (!res.ok) {
-                throw new Error('Network or server error.');
+                // throw new Error('Network or server error.');
+                throw new Error('IP not allowed by admin. Reason: ur a piece of crap.');
                 }
                 return res
             })
