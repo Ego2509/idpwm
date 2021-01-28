@@ -24,7 +24,7 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
 app.post('/',(req,res)=>{
     console.log('POST /')
-    console.log(req.body)
+    console.log(req)
     res.json(req.body)//same as res.send(JSON.stringify(req.body))
     res.end()
 })

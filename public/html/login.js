@@ -54,7 +54,7 @@ window.onload=()=>{
                 if (!res.ok) {
                 throw new Error('Network or server error.');
                 }
-                return res;
+                return res
             })
             .then(res => {
                 alert(res)
