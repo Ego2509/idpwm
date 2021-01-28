@@ -42,7 +42,7 @@ window.onload=()=>{
         let params={
             method:'POST',
             headers:{
-                'Content-Type':'application/x-www-form-urlencoded' //cuz its a form
+                'Content-Type':'application/json'//x-www-form-urlencoded' //cuz its a form
             },
             mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
             body:JSON.stringify(data)

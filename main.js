@@ -26,6 +26,7 @@ app.post('/',(req,res)=>{
     console.log('POST /')
     console.log(req.body)
     res.json(req.body)//same as res.send(JSON.stringify(req.body))
+    res.end()
 })
 
 //this is a backup file
