@@ -18,7 +18,7 @@ window.onload=()=>{
             P.value=""
             return null
         }
-        postLogin()
+        postLogin(user,pasw)
     }
 
     //basic check
@@ -36,25 +36,28 @@ window.onload=()=>{
     //          https://developer.mozilla.org/en-US/docs/Web/API/Response
     //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     //          https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
-    function postLogin(){
-        
+    function postLogin(user,pasw){
+        data={u:user,p:pasw}
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
-            mode:'no-cors', //this line solved the problem with the cors when mozzila dindt let me access my own API
             headers:{
                 'Content-Type':'application/x-www-form-urlencoded' //cuz its a form
-            }
+            },
+            mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
+            body:JSON.stringify(data)
         }
         fetch(route,params)
-            .then(response => {
-                if (!response.ok) {
+            .then(res => {
+                console.log("resok: "+res.ok)
+                console.log("res: "+res)
+                if (!res.ok) {
                 throw new Error('Network or server error.');
                 }
-                return response;
+                return res;
             })
-            .then(response => {
-                alert(response)
+            .then(res => {
+                alert(res)
             })
             .catch(error => {
                 alert(error);
