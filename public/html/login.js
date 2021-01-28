@@ -1,4 +1,4 @@
-window.onload=()=>{
+ndow.onload=()=>{
     sin=document.getElementById("s-in")
     sup=document.getElementById("s-up")
 
