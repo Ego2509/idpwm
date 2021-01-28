@@ -24,9 +24,9 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
 app.post('/',(req,res)=>{
     console.log('POST /')
-    let u=req.clone()
-    console.log("req.blob="+u.blob())
-    console.log("req.text="+u.text())
-    res.writeHead(200, {'Content-Type': 'text/html'})
+    // let u=req.clone()
+    console.log("req.blob="+req.blob())
+    //console.log("req.text="+u.text())
+    res.writeHead(200)
     res.end('thanks')
 })

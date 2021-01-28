@@ -41,7 +41,7 @@ window.onload=()=>{
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
-            mode:'no-cors', //this line solved the problem with the cross origin shared sistem of headers
+            mode:'no-cors', //this line solved the problem with the cors when mozzila dindt let me access my own API
             headers:{
                 'Content-Type':'application/x-www-form-urlencoded' //cuz its a form
             }
