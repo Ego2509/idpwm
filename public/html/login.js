@@ -1,3 +1,5 @@
+const { response } = require("express")
+
 window.onload=()=>{
     sin=document.getElementById("s-in")
     sup=document.getElementById("s-up")
@@ -48,22 +50,24 @@ window.onload=()=>{
             body:JSON.stringify(data)
         }
         fetch(route,params)
-            .then(res => {
-                console.log("resok: "+res.ok)
-                console.log("res: "+res)
-                if (!res.ok) {
+            .then(response => {
+                console.log("resok: "+response.ok)
+                console.log("res: "+response)
+                if (!response.ok) {
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
+                response.json()
             })
-            .then(res => {
-                res.json()
-                // try {
-                //     console.log(res)
-                //     console.dir(res)
-                // } catch (error) {
-                //     gettingMAD()
-            }).then(data => {
+            // .then(response => {
+            //     response.json()
+            //     // try {
+            //     //     console.log(res)
+            //     //     console.dir(res)
+            //     // } catch (error) {
+            //     //     gettingMAD()
+            // })
+            .then(data => {
                 console.log('data:', data);
             }).catch(error => {
                 alert(error);
