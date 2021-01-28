@@ -66,9 +66,11 @@ window.onload=()=>{
             //     //     gettingMAD()
             // })
             .then(data => {
-                console.log('data:', data);
+                console.log('data:', data)
+                gettingMAD()
+                //DV AVR ALGO Ke Me FALT EN L SEN RES
             }).catch(error => {
-                alert(error);
+                alert(error)
             })
         
     }
