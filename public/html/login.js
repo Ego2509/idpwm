@@ -1,5 +1,3 @@
-const { response } = require("express")
-
 window.onload=()=>{
     sin=document.getElementById("s-in")
     sup=document.getElementById("s-up")
