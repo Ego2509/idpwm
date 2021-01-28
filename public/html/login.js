@@ -1,5 +1,3 @@
-const { response } = require("express")
-
 window.onload=()=>{
     sin=document.getElementById("s-in")
     sup=document.getElementById("s-up")
@@ -42,6 +40,7 @@ window.onload=()=>{
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
+            mode:'no-cors',
             headers:{
                 'Content-Type':'application/x-www-form-urlencoded' //cuz its a form
             }
@@ -49,7 +48,7 @@ window.onload=()=>{
         fetch(route,params)
             .then(response => {
                 if (!response.ok) {
-                throw new Error('Network error');
+                throw new Error('Network or server error.');
                 }
                 return response;
             })
