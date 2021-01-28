@@ -19,11 +19,14 @@ http.debug = 2;
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 
-//Login Sistem
 
+//Login System
+//more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
 app.post('/',(req,res)=>{
     console.log('POST /')
-    //console.dir(request.body)
+    let u=req.clone()
+    console.log("req.blob="+u.blob())
+    console.log("req.text="+u.text())
     res.writeHead(200, {'Content-Type': 'text/html'})
     res.end('thanks')
 })

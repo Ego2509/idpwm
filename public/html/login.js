@@ -1,3 +1,5 @@
+const { response } = require("express")
+
 window.onload=()=>{
     sin=document.getElementById("s-in")
     sup=document.getElementById("s-up")
@@ -32,23 +34,31 @@ window.onload=()=>{
     }
 
     //send post to main 
+    //more at:  https://developer.mozilla.org/en-US/docs/Web/API/Request
+    //          https://developer.mozilla.org/en-US/docs/Web/API/Response
+    //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     function postLogin(){
-
-        var http = new XMLHttpRequest();
-        var params = "holateamo";
-        http.open("POST", "http://idp.udea.edu.co:80", true);
         
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        http.setRequestHeader("Content-length", params.length);
-        http.setRequestHeader("Connection", "close");
-        
-        alert(http.onreadystatechange);
-        http.onreadystatechange=()=>{
-            if (http.readyState == 4 && http.status == 200) {
-                alert(http.responseText);
+        let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
+        let params={
+            method:'POST',
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded' //cuz its a form
             }
         }
+        fetch(route,params)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network error');
+                }
+                return response;
+            })
+            .then(response => {
+                alert(response)
+            })
+            .catch(error => {
+                alert(error);
+            })
         
-        http.send(params);
-
+        
     }
