@@ -58,14 +58,16 @@ window.onload=()=>{
                 return res
             })
             .then(res => {
-                res.then(data=>{
-                    console.log(data)
-                })
+                console.log(res).catch(error => {gettingMAD()})
+                console.dir(res).catch(error => {gettingMAD()})
             })
             .catch(error => {
                 alert(error);
             })
         
-        
+    }
+
+    function gettingMAD(){
+        alert('IP not allowed by admin (you are trash)')
     }
 //this is a backup file
