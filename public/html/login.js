@@ -35,12 +35,13 @@ window.onload=()=>{
     //more at:  https://developer.mozilla.org/en-US/docs/Web/API/Request
     //          https://developer.mozilla.org/en-US/docs/Web/API/Response
     //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    //          https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
     function postLogin(){
         
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
-            mode:'no-cors',
+            mode:'no-cors', //this line solved the problem with the cross origin shared sistem of headers
             headers:{
                 'Content-Type':'application/x-www-form-urlencoded' //cuz its a form
             }
