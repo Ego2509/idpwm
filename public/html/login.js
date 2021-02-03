@@ -52,7 +52,7 @@ window.onload=()=>{
 
         fetch(request)
             .then(async (response) => {
-                if (!!response.ok /*response.status!==200*/ ) {
+                if (!response.ok /*response.status!==200*/ ) {
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
