@@ -36,30 +36,30 @@ window.onload=()=>{
     //          https://developer.mozilla.org/en-US/docs/Web/API/Response
     //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     //          https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
-    async function postLogin(user=null,pasw=null){
+    async function postLogin(user,pasw){
         const data={u:user,p:pasw}
-        console.log(`sdata${JSON.stringify(data)}`)
+        console.log("sdata:"+JSON.stringify(data))
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
             // headers:{
             //     'Content-Type':'application/json'//x-www-form-urlencoded' //cuz its a form
             // },
-            mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
+            // mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
             body:JSON.stringify(data)
         }
         // fetch(request) rather than fetch(route,params
         let request=new Request(route,params)
-        let response= await fetch(request).then((response) => {
+        let response=await fetch(request).then((response) => {
                 if (!response.ok /*response.status!==200*/ ) {
                 // throw new Error('Network or server error.');
-                throw new Error('IP not allowed by admin (you are trash)');
+                throw new Error('response.status!==200');
                 }
                 // console.log("resok: "+response.status) // premature?
                 return response.json()
         })
 
-        response.then(data => {
+        response.then((data) => {
             console.log('data:', data)
             gettingHappy()
         })
