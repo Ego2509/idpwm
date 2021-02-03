@@ -28,9 +28,10 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
 app.post('/',(req,res)=>{
     console.log('POST /')
-    console.log(JSON.stringify(req))
+    console.log(req)
     res.json(req.body)// is th same as res.json(req.body) 
-    res.status("200").end()
+    res.send("no funciona pero igual")
+    // res.status("200").end()
 })
 
 //this is a backup file
