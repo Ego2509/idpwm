@@ -29,7 +29,7 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 app.post('/',(req,res)=>{
     console.log('POST /')
     console.log(req.body)
-    res.send(req.body)//res.send(JSON.stringify(req.body)) is th same as res.json(req.body) 
+    res.send(JSON.stringify(req.body))// is th same as res.json(req.body) 
     res.status("200").end()
 })
 
