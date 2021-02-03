@@ -29,8 +29,8 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 app.post('/',(req,res)=>{
     console.log('POST /')
     console.log(req)
-    res.json(req.body)// is th same as res.json(req.body) 
-    res.send("no funciona pero igual")
+    res.json(req.body)// is th same as res.json(req.body)
+    //working
     // res.status("200").end()
 })
 

@@ -36,8 +36,9 @@ window.onload=()=>{
     //          https://developer.mozilla.org/en-US/docs/Web/API/Response
     //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     //          https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
-    function postLogin(user,pasw){
+    async function postLogin(user=null,pasw=null){
         const data={u:user,p:pasw}
+        console.log(`sdata${JSON.stringify(data)}`)
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
@@ -49,31 +50,22 @@ window.onload=()=>{
         }
         // fetch(request) rather than fetch(route,params
         let request=new Request(route,params)
-
-        fetch(request)
-            .then(async (response) => {
+        let response= await fetch(request).then((response) => {
                 if (!response.ok /*response.status!==200*/ ) {
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
-                console.log("resok: "+response.status)
-                return await response.json()
-            })
-            // .then(response => {
-            //     response.json()
-            //     // try {
-            //     //     console.log(res)
-            //     //     console.dir(res)
-            //     // } catch (error) {
-            //     //     gettingMAD()
-            // })
-            .then(data => {
-                console.log('data:', data)
-                gettingHappy()
-                //DV AVR ALGO Ke Me FALT EN L SEN RES
-            }).catch(error => {
-                alert(error)
-            })
+                // console.log("resok: "+response.status) // premature?
+                return response.json()
+        })
+
+        response.then(data => {
+            console.log('data:', data)
+            gettingHappy()
+        })
+        .catch(error => {
+            alert(error)
+        })
         
     }
 
