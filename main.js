@@ -26,7 +26,7 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 
 //Login System
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
-app.post('/',async (req,res)=>{
+app.post('/',(req,res)=>{
     console.log('POST /')
     console.log(JSON.stringify(req))
     res.json(req.body)// is th same as res.json(req.body) 
