@@ -37,7 +37,7 @@ window.onload=()=>{
     //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     //          https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
     function postLogin(user,pasw){
-        data={u:user,p:pasw}
+        const data={u:user,p:pasw}
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
@@ -51,13 +51,13 @@ window.onload=()=>{
         let request=new Request(route,params)
 
         fetch(request)
-            .then(response => {
+            .then(async (response) => {
                 if (!!response.ok /*response.status!==200*/ ) {
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
                 console.log("resok: "+response.status)
-                return response.json()
+                return await response.json()
             })
             // .then(response => {
             //     response.json()

@@ -26,9 +26,9 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 
 //Login System
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
-app.post('/',(req,res)=>{
+app.post('/',async (req,res)=>{
     console.log('POST /')
-    console.log(req.body)
+    console.log(await req.body)
     res.send(JSON.stringify(req.body))// is th same as res.json(req.body) 
     res.status("200").end()
 })
