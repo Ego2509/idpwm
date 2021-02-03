@@ -52,12 +52,12 @@ window.onload=()=>{
 
         fetch(request)
             .then(response => {
-                if (response.status !== 200 /*same as !response.ok*/) {
+                if (!!response.ok /*response.status!==200*/ ) {
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
-                console.log("resok: "+response.ok)
-                response.json()
+                console.log("resok: "+response.status)
+                return response.json()
             })
             // .then(response => {
             //     response.json()
@@ -69,7 +69,7 @@ window.onload=()=>{
             // })
             .then(data => {
                 console.log('data:', data)
-                gettingMAD()
+                gettingHappy()
                 //DV AVR ALGO Ke Me FALT EN L SEN RES
             }).catch(error => {
                 alert(error)
@@ -77,7 +77,7 @@ window.onload=()=>{
         
     }
 
-    function gettingMAD(){
-        alert('IP not allowed by admin (you are trash)')
+    function gettingHappy(){
+        alert('working.')
     }
 //this is a backup file
