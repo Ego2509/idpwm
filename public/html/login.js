@@ -44,7 +44,7 @@ window.onload=()=>{
             // headers:{
             //     'Content-Type':'application/json'//x-www-form-urlencoded' //cuz its a form
             // },
-            // mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
+            mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
             body:JSON.stringify(data)
         }
         // fetch(request) rather than fetch(route,params
@@ -57,7 +57,6 @@ window.onload=()=>{
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
                 console.log("resok: "+response.ok)
-                console.log("res: "+response)
                 response.json()
             })
             // .then(response => {
