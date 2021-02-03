@@ -41,20 +41,23 @@ window.onload=()=>{
         let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
         let params={
             method:'POST',
-            headers:{
-                'Content-Type':'application/json'//x-www-form-urlencoded' //cuz its a form
-            },
-            mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
+            // headers:{
+            //     'Content-Type':'application/json'//x-www-form-urlencoded' //cuz its a form
+            // },
+            // mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
             body:JSON.stringify(data)
         }
-        fetch(route,params)
+        // fetch(request) rather than fetch(route,params
+        let request=new Request(route,params)
+
+        fetch(request)
             .then(response => {
-                console.log("resok: "+response.ok)
-                console.log("res: "+response)
-                if (!response.ok) {
+                if (response.status !== 200 /*same as !response.ok*/) {
                 // throw new Error('Network or server error.');
                 throw new Error('IP not allowed by admin (you are trash)');
                 }
+                console.log("resok: "+response.ok)
+                console.log("res: "+response)
                 response.json()
             })
             // .then(response => {
