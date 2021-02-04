@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 const connection_parameters={
-    host:"localhost",
+    host:"localhost:3306",
     user:"ego2509",
     password:"jpg",
     database:"db_idpwm" 
