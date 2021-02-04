@@ -6,7 +6,7 @@ Developed by the bioinformatics area.
 const path=require('path');
 const express=require('express');
 const http=require('http');
-const db=require('db.js')
+const db=require('./db.js')
 
 // const httplog=require('http-debug').http;
 
