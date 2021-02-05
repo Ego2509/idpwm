@@ -78,11 +78,8 @@ app.post('/',(req,res/*,next*/)=>{
         //check
         let a=(p===ans.PASW)
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
-        if(a){
-            res.redirect('/dashboard')
-        }
+        if(a) res.redirect('/dashboard.html')
         else{
-
             response.output=0  //password mismatch
             try{
                 res.status(200).json(response)
@@ -91,8 +88,13 @@ app.post('/',(req,res/*,next*/)=>{
             }
         }
     })
-
-
 })
+
+//TODO: use routers for different paths
+
+// app.get('/dashboard',()=>{
+
+// })
+
 
 //this is a backup file
