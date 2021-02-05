@@ -68,7 +68,7 @@ function postLogin(user,pasw){
             response.output=0
         }else{
             response.output=1
-            fetch(response.url)
+            fetch(response.url,params)
         }
         if (data.body.sqlia) alert("sus query...")
         return data
