@@ -54,10 +54,10 @@ app.post('/',(req,res/*,next*/)=>{
         // console.log(`ans: ${JSON.stringify(ans)}`)
         // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
-        ans=JSON.parse(ans[0])
-        console.log("ans... "+JSON.stringify(ans))
+        ans=ans[0]
+        console.log("ans... "+ans)
         console.dir(ans)
-        ans=(ans==0)?ans:()=>{
+        ans=(ans!=0)?ans:()=>{
             susQuery()
         }
         //check
