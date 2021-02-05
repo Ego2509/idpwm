@@ -64,7 +64,15 @@ function postLogin(user,pasw){
     })
     response.then((data) => {
         console.log('data:', data)
-        data=JSON.parse(data)
+        if(/^\<html/g.test(data)){
+            console.log("html response");
+            response.output=1
+        }else{
+            if(/^\{/g.test(data)){
+                console.log(data)
+                data=JSON.parse(data)
+            }
+        }
         if (data.sqlia) alert("sus query...")
         return data
     })

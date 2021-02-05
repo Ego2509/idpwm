@@ -85,7 +85,6 @@ app.post('/',(req,res/*,next*/)=>{
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
         if(a){
             response.output=1
-            res.write(JSON.stringify(response))
             res.redirect('/dashboard?u='+ans.USER)
         }
         else{
