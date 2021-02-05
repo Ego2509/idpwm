@@ -14,6 +14,7 @@
   text-align: center;
   /*border-radius: 5px;*/
   color: var(--color-let-bor);
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .centered-float{
@@ -150,6 +151,7 @@
 
 h1{
   font-size: 1.4em;
+  font-family: none;
 }
 
 #s-in:hover, #s-up:hover{

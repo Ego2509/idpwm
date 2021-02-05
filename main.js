@@ -49,8 +49,10 @@ app.post('/',(req,res/*,next*/)=>{
     let [u,p]=[req.body.u,req.body.p] //working
     var response={
         providedUser:u,
-        providedPasw:p
+        providedPasw:p,
+        homeRoute:0
     }
+    //redirection to home page as homeRoute=1
     //login:
     //req(json) ->mysql(db col)
     //u         ->USER

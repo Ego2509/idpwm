@@ -9,6 +9,9 @@ window.onload=()=>{
     sin.addEventListener("click",signIn)
     P.addEventListener("keypress",(e)=>{if (e.key==='Enter') signIn()})
     
+    sup.addEventListener("click",()=>{
+        alert("You must have admin privileges to perform this operation")
+    })
     //onclick sin
     function signIn(){
         user=U.value
@@ -48,6 +51,7 @@ window.onload=()=>{
             // mode:'no-cors', //this solved the problem with cors when mozilla dind't let me access my own API
             body:JSON.stringify(data)
         }
+        var authOK=0
         // fetch(request) rather than fetch(route,params
         let request=new Request(route,params)
         let response=fetch(request).then(async (response) => {
@@ -62,6 +66,7 @@ window.onload=()=>{
         response.then((data) => {
             console.log('data:', data)
             if (data.sqlia) alert("sus query...")
+            authOK=(data.output)?1:0
             gettingHappy()
         })
         .catch(error => {
