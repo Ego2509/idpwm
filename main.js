@@ -25,7 +25,7 @@ app.use(express.text())
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
-function singleQueryOutp(q){
+function singleQueryOutput(q){
     if(!(/\s|\=|\;/g.test(q))) return 0;//sus injection query
     else return db.query(q,(err,ans/*,fields*/)=>{
         try {
@@ -55,7 +55,7 @@ app.post('/',(req,res/*,next*/)=>{
     //p         ->PASW
     q=`SELECT * FROM USERS WHERE USER=${db.escape(u)}`//escape prevents sql attacks
     
-    ans=standartQuery(q)
+    ans=singleQueryOutput(q)
     ans=(ans)?ans:()=>{
         res.send("sus query")
         return 0
