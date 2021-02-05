@@ -36,7 +36,7 @@ function singleQueryOutput(q){
         // console.log(`ans: ${JSON.stringify(ans)}`)
         // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
-        return ans[0]
+        return JSON.parse(ans[0])
     })
 }
 
@@ -62,7 +62,7 @@ app.post('/',(req,res/*,next*/)=>{
     }
 
     let a=(p===ans.PASW)
-    console.log(`password: '${p}' - match: ${a}`)
+    console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
     if(a) res.send("password match")
     else res.send("password mismatch")
     
