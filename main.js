@@ -36,8 +36,8 @@ function singleQueryOutput(q){
         // console.log(`ans: ${JSON.stringify(ans)}`)
         // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
-        console.log("ans... "+JSON.stringify(JSON.parse(ans[0])))
-        console.log(JSON.parse(ans[0]))
+        console.log("ans... "+ans[0])
+        console.dir(JSON.parse(ans[0]))
         return JSON.parse(ans[0])
     }).then((ans)=>{
         console.log(ans)
