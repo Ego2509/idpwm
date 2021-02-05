@@ -64,6 +64,7 @@ function postLogin(user,pasw){
     })
     response.then((data) => {
         console.log('data:', data)
+        data=JSON.parse(data)
         if (data.sqlia) alert("sus query...")
         return data
     })
@@ -74,8 +75,7 @@ function postLogin(user,pasw){
     //data received
     if(!response.output) alert("Wrong username or password.")
     else{
-        const jr=JSON.parse(response)
-        console.log(jr)
+        console.log(response)
     }
 }
 //this is a backup file
