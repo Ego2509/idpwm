@@ -14,7 +14,7 @@ const app=express();
 const server=http.createServer(app);
 
 // app.use(express.static(path.join(__dirname,'public')))
-app.use(express.static(path.join(__dirname,'public/html')))
+app.use(express.static(path.join(__dirname,'public/html/index.html')))
 
 // from the request documentation
 app.use(express.json()) // for parsing application/json
