@@ -34,7 +34,7 @@ function standartQuery(q){
             console.log(`[${String(Date.now())}] query error: ${err.message}`)
         }
         console.log(`ans: ${JSON.stringify(ans)}`)
-        console.log(`ID-USER-PASW: ${ans[ID]}-${ans[USER]}-${ans[PASW]}`)
+        console.log(`ID-USER-PASW: ${ans.ID}-${ans.USER}-${ans.PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
         return ans
     })
@@ -61,7 +61,7 @@ app.post('/',(req,res/*,next*/)=>{
         return 0
     }
 
-    let a=(p===ans[PASW])
+    let a=(p===ans.PASW)
     console.log(`password match: ${a}`)
     if(a) res.send("password match")
     else res.send("password mismatch")
