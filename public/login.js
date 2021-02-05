@@ -69,7 +69,7 @@ async function postLogin(user,pasw){
         else{
             // fetch(response.redirect,params)
             fetch("http://idp.udea.edu.co/dashboard?" + new URLSearchParams({
-                u:data.u
+                u:data.providedUser
             }))
         }
         return data
