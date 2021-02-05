@@ -17,7 +17,7 @@ const server=http.createServer(app);
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.static(path.join(__dirname,'public/views')))
 app.get('/',(req,res,next)=>{
-    res.render(path.join(__dirname,"/public/views/dashboard.ejs"))
+    res.render(path.join(__dirname,"/public/views/index.ejs"))
 })
 
 // from the request documentation
