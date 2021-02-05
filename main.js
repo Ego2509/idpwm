@@ -14,12 +14,6 @@ const ejs=require('ejs')
 const app=express();
 const server=http.createServer(app);
 
-app.use(express.static(path.join(__dirname,'public')))
-app.use(express.static(path.join(__dirname,'public/views')))
-app.get('/',(req,res,next)=>{
-    res.render(path.join(__dirname,"/public/views/index.ejs"))
-})
-
 // from the request documentation
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -28,6 +22,13 @@ app.use(express.text())
 
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
+
+app.get('/',(req,res,next)=>{
+    res.render(path.join(__dirname,"/public/views/index.ejs"))
+})
+app.get('/dashboard',(req,res)=>{
+    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.body.u,rank:req.body.rank})
+})
 
 //defined function for the server
 function datelog(m){
@@ -94,9 +95,10 @@ app.post('/',(req,res/*,next*/)=>{
     })
 })
 
-app.get('/dashboard',(req,res)=>{
-    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.body.u,rank:req.body.rank})
-})
+app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public/views')))
+
+
 
 //TODO: use routers for different paths
 //this is a backup file
