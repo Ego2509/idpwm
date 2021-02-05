@@ -13,7 +13,7 @@ const {db}=require('./db')
 const app=express();
 const server=http.createServer(app);
 
-app.use(express.static(path.join(__dirname,'public')))
+// app.use(express.static(path.join(__dirname,'public')))
 app.use(express.static(path.join(__dirname,'public/html')))
 
 // from the request documentation
