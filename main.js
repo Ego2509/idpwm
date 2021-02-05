@@ -32,7 +32,7 @@ app.get('/',(req,res,next)=>{
 })
 app.get('/dashboard',(req,res)=>{
     console.log(req);
-    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.query.u}).redirect("/dashboard")
+    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.query.u})
 })
 
 
