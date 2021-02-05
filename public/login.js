@@ -62,28 +62,28 @@ function postLogin(user,pasw){
             // console.log("resok: "+response.status) // premature?
             return await response//return await response.json()
     })
-    response.then((data) => {
-        console.log('data:', data)
-        if(/^\<html/g.test(data)){
-            console.log("html response");
-            response.output=1
-        }else{
-            if(/^\{/g.test(data)){
-                console.log(data)
-                data=JSON.parse(data)
-            }
-        }
-        if (data.sqlia) alert("sus query...")
-        return data
-    })
-    .catch(error => {
-        console.log(error);
-    })
+    // response.then((data) => {
+    //     console.log('data:', data)
+    //     if(/^\<html/g.test(data)){
+    //         console.log("html response");
+    //         response.output=1
+    //     }else{
+    //         if(/^\{/g.test(data)){
+    //             console.log(data)
+    //             data=JSON.parse(data)
+    //         }
+    //     }
+    //     if (data.sqlia) alert("sus query...")
+    //     return data
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    // })
     
-    //data received
-    if(!response.output) alert("Wrong username or password.")
-    else{
-        console.log(response)
-    }
+    // //data received
+    // if(!response.output) alert("Wrong username or password.")
+    // else{
+    //     console.log(response)
+    // }
 }
 //this is a backup file
