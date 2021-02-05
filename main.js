@@ -14,7 +14,7 @@ const ejs=require('ejs')
 const app=express();
 const server=http.createServer(app);
 
-// app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public')))
 // app.use(express.static(path.join(__dirname,'public/html/index.html')))
 app.get('/',(req,res,next)=>{
     res.render("/public/views/index.ejs")
@@ -95,7 +95,7 @@ app.post('/',(req,res/*,next*/)=>{
 })
 
 app.get('/dashboard',(req,res)=>{
-    res.render("/public/views/index.ejs",{user:req.body.u,rank:req.body.rank})
+    res.render(path.join(__dirname,"/public/views/index.ejs"),{user:req.body.u,rank:req.body.rank})
 })
 
 //TODO: use routers for different paths
