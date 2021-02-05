@@ -25,27 +25,10 @@ app.use(express.text())
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
-function singleQueryOutput(q){
-    if(!(/\s|\=|\;/g.test(q))) return 0;//sus injection query
-    else return db.query(q,(err,ans/*,fields*/)=>{
-        try {
-            if(err) throw(err)
-        } catch (e) {
-            console.log(`[${String(Date.now())}] query error: ${err.message}`)
-        }
-        // console.log(`ans: ${JSON.stringify(ans)}`)
-        // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
-        // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
-        console.log("ans... "+ans[0])
-        console.dir(ans[0])
-        return JSON.parse(ans[0])
-    }).then((ans)=>{
-        console.log(ans)
-        return ans
-    })
-
+susQuery(){
+    console.log("sus query");
+    res.send("sus query")
 }
-
 
 //Login System
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
@@ -61,17 +44,29 @@ app.post('/',(req,res/*,next*/)=>{
     //p         ->PASW
     q=`SELECT * FROM USERS WHERE USER=${db.escape(u)}`//escape prevents sql attacks
     
-    ans=singleQueryOutput(q)
-    ans=(ans)?ans:()=>{
-        res.send("sus query")
-        return 0
-    }
+    if(!(/\s|\=|\;/g.test(q))) susQuery();//sus injection query
+    else db.query(q,(err,ans/*,fields*/)=>{
+        try {
+            if(err) throw(err)
+        } catch (e) {
+            console.log(`[${String(Date.now())}] query error: ${err.message}`)
+        }
+        // console.log(`ans: ${JSON.stringify(ans)}`)
+        // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
+        // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
+        console.log("ans... "+ans[0])
+        console.dir(ans[0])
+        ans=(ans==0)?ans:()=>{
+            susQuery()
+        }
+        //check
+        let a=(p===ans[0].PASW)
+        console.log(`PASW: '${ans[0].PASW}' - p: '${p}' - match: ${a}`)
+        if(a) res.send("password match")
+        else res.send("password mismatch")
+        
+    })
 
-    let a=(p===ans.PASW)
-    console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
-    if(a) res.send("password match")
-    else res.send("password mismatch")
-    
 
 })
 
