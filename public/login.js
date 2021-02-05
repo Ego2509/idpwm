@@ -72,6 +72,7 @@ function postLogin(user,pasw){
     })
     
     //data received
+    console.log('outerResponse'+response);
     if(!response.output) alert("Wrong username or password.")
     else{
         fetch(response.redirect,params)
