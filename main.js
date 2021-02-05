@@ -23,11 +23,14 @@ app.use(express.text())
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
+app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public/views')))
+
 app.get('/',(req,res,next)=>{
     res.render(path.join(__dirname,"/public/views/index.ejs"))
 })
 app.get('/dashboard',(req,res)=>{
-    res.render("/public/views/dashboard.ejs",{user:req.u})
+    res.render("/dashboard.ejs",{user:req.u})
 })
 
 
@@ -101,8 +104,6 @@ app.post('/',(req,res/*,next*/)=>{
     })
 })
 
-app.use(express.static(path.join(__dirname,'public')))
-app.use(express.static(path.join(__dirname,'public/views')))
 
 
 
