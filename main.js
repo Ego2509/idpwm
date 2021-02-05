@@ -25,7 +25,7 @@ app.use(express.text())
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
-function standartQuery(q){
+function singleQueryOutp(q){
     if(!(/\s|\=|\;/g.test(q))) return 0;//sus injection query
     else return db.query(q,(err,ans/*,fields*/)=>{
         try {
@@ -33,10 +33,10 @@ function standartQuery(q){
         } catch (e) {
             console.log(`[${String(Date.now())}] query error: ${err.message}`)
         }
-        console.log(`ans: ${JSON.stringify(ans)}`)
-        console.log(`ID-USER-PASW: ${ans.ID}-${ans.USER}-${ans.PASW}`)
+        // console.log(`ans: ${JSON.stringify(ans)}`)
+        // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
-        return ans
+        return ans[0]
     })
 }
 
@@ -46,7 +46,7 @@ function standartQuery(q){
 app.post('/',(req,res/*,next*/)=>{
     console.log('POST /')
     console.log(req)
-    res.json(req.body)// is th same as res.json(req.body)
+    // res.json(req.body)// is th same as res.json(req.body)
     let [u,p]=[req.body.u,req.body.p] //working
     
     //login:
