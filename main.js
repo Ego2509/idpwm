@@ -25,15 +25,14 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.static(path.join(__dirname,'public/views')))
-app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
 
-app.get('/',(req,res,next)=>{
-    res.render(path.join(__dirname,"/public/views/index.ejs"))
-})
+// app.get('/',(req,res,next)=>{
+//     res.render(path.join(__dirname,"/public/views/index.ejs"))
+// })
 app.get('/dashboard',(req,res)=>{
     console.log(req);
-    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.query.u})
+    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.query.u}).redirect("/dashboard")
 })
 
 
