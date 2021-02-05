@@ -25,19 +25,29 @@ app.use(express.text())
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
+//defined function for the server
+function datelog(m){
+    console.log(`[${String(Date.now())}]:`)
+    console.log(m)
+}
+
 function susQuery(){
     console.log("sus query");
-    res.json({sqlia:1})
+    try{
+        res.json({sqlia:1})
+    }catch(e){
+        datelog(e.message);
+    }
 }
 
 //Login System
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
 app.post('/',(req,res/*,next*/)=>{
-    console.log('POST /')
-    console.log(req)
-    // res.json(req.body)// is th same as res.json(req.body)
+    datelog('POST /')
+    // datelog(req)
+    // res.json(req.body)
     let [u,p]=[req.body.u,req.body.p] //working
-    response={
+    var response={
         providedUser:u,
         providedPasw:p
     }
@@ -52,7 +62,7 @@ app.post('/',(req,res/*,next*/)=>{
         try {
             if(err) throw(err)
         } catch (e) {
-            console.log(`[${String(Date.now())}] query error: ${err.message}`)
+            datelog(`query error: ${err.message}`)
         }
         // console.log(`ans: ${JSON.stringify(ans)}`)
         // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
@@ -66,9 +76,13 @@ app.post('/',(req,res/*,next*/)=>{
         //check
         let a=(p===ans.PASW)
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
-        if(a) response[output]=1 //password match
-        else response[output]=0  //password mismatch
-        res.status(200).json(response)
+        if(a) response.output=1 //password match
+        else response.output=0  //password mismatch
+        try{
+            res.status(200).json(response)
+        }catch(e){
+            datelog(e.message)
+        }
     })
 
 
