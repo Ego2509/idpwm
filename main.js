@@ -70,21 +70,25 @@ app.post('/',(req,res/*,next*/)=>{
         // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
         ans=ans[0]
-        // console.log("ans... "+ans) [object Object]
-        // console.dir(ans) RowDataPacket{...}
+        console.log("ans... "+ans)
+        console.dir(ans)
         ans=(ans!=0)?ans:()=>{
             susQuery()
         }
         //check
         let a=(p===ans.PASW)
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
-        if(a) response.output=1 //password match
-        else response.output=0  //password mismatch
-        try{
-            res.write(JSON.stringify(response))
-            res.redirect('/dashboard.html')
-        }catch(e){
-            datelog(e.message)
+        if(a){
+            res.redirect('/dashboard')
+        }
+        else{
+
+            response.output=0  //password mismatch
+            try{
+                res.status(200).json(response)
+            }catch(e){
+                datelog(e.message)
+            }
         }
     })
 
