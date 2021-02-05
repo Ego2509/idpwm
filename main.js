@@ -27,7 +27,7 @@ app.get('/',(req,res,next)=>{
     res.render(path.join(__dirname,"/public/views/index.ejs"))
 })
 app.get('/dashboard',(req,res)=>{
-    res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.body.u,rank:req.body.rank})
+    res.render("/public/views/dashboard.ejs",{user:req.u})
 })
 
 
