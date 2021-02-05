@@ -85,12 +85,14 @@ app.post('/',(req,res/*,next*/)=>{
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
         if(a){
             response.output=1
-            res.redirect('/dashboard?u='+ans.USER)
+            let u=res.redirect('/dashboard?u='+ans.USER)
+            console.log(u);
         }
         else{
             response.output=0  //password mismatch
             try{
-                res.status(200).json(response)
+                let u = res.status(200).json(response)
+                console.log(u)
             }catch(e){
                 datelog(e.message)
             }
