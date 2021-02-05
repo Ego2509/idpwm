@@ -3,18 +3,18 @@
 Web Manager of the Group of Primary Immunodeficiencies.
 Developed by the bioinformatics area.
 */
-const path=require('path');
-const express=require('express');
-const http=require('http');
-const db=require('./db.js')
+const path=require('path')
+const express=require('express')
+const http=require('http')
+const {db}=require('./db')
 
 // const httplog=require('http-debug').http;
 
 const app=express();
 const server=http.createServer(app);
 
-app.use(express.static(path.join(__dirname,'public')));
-app.use(express.static(path.join(__dirname,'public/html')));
+app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public/html')))
 
 // from the request documentation
 app.use(express.json()) // for parsing application/json
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 // http.debug = 2;
 
 const PORT=process.env.PORT||80;//3000;//80;
-server.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
+server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
 //Login System
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
@@ -40,9 +40,9 @@ app.post('/',(req,res/*,next*/)=>{
     q=`SELECT USER=${u} FROM USERS`
     db.query(q,(err,ans,fields)=>{
         if(err) throw(err);
-        console.log(`ans: ${ans}`);
-        console.log(`fields: ${fields}`);
-        console.log(`password match: ${p}`);
+        console.log(`ans: ${ans}`)
+        console.log(`fields: ${fields}`)
+        console.log(`password match: ${p}`)
     })
 
 })
