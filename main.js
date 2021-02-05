@@ -16,7 +16,7 @@ const server=http.createServer(app);
 // app.use(express.static(path.join(__dirname,'public')))
 // app.use(express.static(path.join(__dirname,'public/html/index.html')))
 app.get('/',(req,res,next)=>{
-    res.sendFile('/')
+    res.sendFile(path.join(__dirname,'public/html/index.html'))
 })
 
 // from the request documentation
