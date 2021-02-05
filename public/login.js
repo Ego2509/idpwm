@@ -68,9 +68,9 @@ async function postLogin(user,pasw){
         if(!data.output) alert("Wrong username or password.")
         else{
             // fetch(response.redirect,params)
-            var paramsGet=params
-            paramsGet.method='GET'
-            fetch("http://idp.udea.edu.co/dashboard",paramsGet)
+            fetch("http://idp.udea.edu.co/dashboard?" + new URLSearchParams({
+                u:data.u
+            }))
         }
         return data
     })

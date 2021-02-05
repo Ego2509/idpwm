@@ -30,6 +30,7 @@ app.get('/',(req,res,next)=>{
     res.render(path.join(__dirname,"/public/views/index.ejs"))
 })
 app.get('/dashboard',(req,res)=>{
+    console.log(request);
     res.render("/dashboard.ejs",{user:req.u})
 })
 
