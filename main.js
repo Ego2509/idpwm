@@ -87,7 +87,7 @@ app.post('/',(req,res/*,next*/)=>{
         if(a){
             response.output=1
             response.redirect="http://idp.udea.edu.co/dashboard"
-            console.log(res)
+            // console.log(res)
             res.status(200).json(response)
         }
         else{
