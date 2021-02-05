@@ -86,25 +86,19 @@ app.post('/',(req,res/*,next*/)=>{
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
         if(a){
             response.output=1
+            response.redirect="http://idp.udea.edu.co/dashboard"
             console.log(res)
-            res.body={u:ans.USER}
-            res.redirect('/dashboard')
-            
+            res.status(200).json(response)
         }
         else{
             response.output=0  //password mismatch
             try{
-                let u = res.status(200).json(response)
-                console.log(u)
+                res.status(200).json(response)
             }catch(e){
                 datelog(e.message)
             }
         }
     })
-})
-app.post('/',(req,res,next)=>{
-    res.body.modified=true
-    res.next()
 })
 
 app.use(express.static(path.join(__dirname,'public')))

@@ -60,17 +60,11 @@ function postLogin(user,pasw){
             throw new Error('response.status!==200');
             }
             // console.log("resok: "+response.status) // premature?
-            return await response//return await response.json()
+            return await response.json()//return await response.json()
     })
     response.then((data) => {
         console.log('data:', data)
-        if(response.url==window.location){
-            response.output=0
-        }else{
-            response.output=1
-            fetch(response.url,params)
-        }
-        if (data.body.sqlia) alert("sus query...")
+        if (data.sqlia) alert("sus query...")
         return data
     })
     .catch(error => {
@@ -80,7 +74,7 @@ function postLogin(user,pasw){
     //data received
     if(!response.output) alert("Wrong username or password.")
     else{
-        console.log(response)
+        fetch(response.redirect,params)
     }
 }
 //this is a backup file
