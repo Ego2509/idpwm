@@ -19,27 +19,25 @@ app.use(express.static(path.join(__dirname,'public/html')))
 // from the request documentation
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
+app.use(express.text())
 // http.debug = 2;
 
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
 function standartQuery(q){
-    if(!(/\s|\=|\;/g.test(q))){return 0}//sus injection query
-    else{
-        return db.query(q,(err,ans/*,fields*/)=>{
-            try {
-                if(err) throw(err)
-            } catch (e) {
-                console.log(`[${String(Date.now())}] query error: ${err.message}`)
-            }
-            console.log(`ans: ${JSON.stringify(ans)}`)
-            console.log(`ID-USER-PASW: ${ans["ID"]}-${ans["USER"]}-${ans["PASW"]}`)
-            // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
-            return ans
-        })
-    }
+    if(!(/\s|\=|\;/g.test(q))) return 0;//sus injection query
+    else return db.query(q,(err,ans/*,fields*/)=>{
+        try {
+            if(err) throw(err)
+        } catch (e) {
+            console.log(`[${String(Date.now())}] query error: ${err.message}`)
+        }
+        console.log(`ans: ${ans.toString()}`)
+        console.log(`ID-USER-PASW: ${ans[ID]}-${ans[USER]}-${ans[PASW]}`)
+        // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
+        return ans
+    })
 }
 
 
@@ -55,13 +53,18 @@ app.post('/',(req,res/*,next*/)=>{
     //req(json) ->mysql(db col)
     //u         ->USER
     //p         ->PASW
-    q=`SELECT * FROM USERS WHERE USER='${u}'`
+    q=`SELECT * FROM USERS WHERE USER=${db.escape(u)}`//escape prevents sql attacks
     
     ans=standartQuery(q)
     ans=(ans)?ans:()=>{
         res.send("sus query")
     }
-    console.log(`password match: ${p===ans["PASW"]}`)
+    console.log(`password match: ${()=>{
+        let a=(p===ans[PASW])
+        if(a) res.send("password match")
+        else res.send("wrong user or password")
+        return a
+    }}`)
 
 })
 
