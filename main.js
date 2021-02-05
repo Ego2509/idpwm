@@ -31,7 +31,7 @@ app.get('/',(req,res,next)=>{
 })
 app.get('/dashboard',(req,res)=>{
     console.log(req);
-    res.render("/dashboard.ejs",{user:req.u})
+    res.render("/dashboard.ejs",{user:req.query.u})
 })
 
 
