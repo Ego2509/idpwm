@@ -37,7 +37,7 @@ app.post('/',(req,res/*,next*/)=>{
     //req(json) ->mysql(db col)
     //u         ->USER
     //p         ->PASW
-    q=`SELECT (USER,PASW) FROM USERS WHERE USER='${u}'`
+    q=`SELECT USER,PASW FROM USERS WHERE USER='${u}'`
     
     db.query(q,(err,ans,fields)=>{
         try {
