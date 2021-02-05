@@ -27,7 +27,7 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
 //defined function for the server
 function datelog(m){
-    console.log(`[${String(Date.now())}]:`)
+    console.log(`[${(new Date).toString()}]:`)
     console.log(m)
 }
 
@@ -70,8 +70,8 @@ app.post('/',(req,res/*,next*/)=>{
         // console.log(`ID-USER-PASW: ${ans[0].ID}-${ans[0].USER}-${ans[0].PASW}`)
         // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
         ans=ans[0]
-        console.log("ans... "+ans)
-        console.dir(ans)
+        // console.log("ans... "+ans) [object Object]
+        // console.dir(ans) RowDataPacket{...}
         ans=(ans!=0)?ans:()=>{
             susQuery()
         }
@@ -81,7 +81,8 @@ app.post('/',(req,res/*,next*/)=>{
         if(a) response.output=1 //password match
         else response.output=0  //password mismatch
         try{
-            res.status(200).json(response)
+            res.write(JSON.stringify(response))
+            res.redirect('/dashboard.html')
         }catch(e){
             datelog(e.message)
         }
