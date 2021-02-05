@@ -30,6 +30,7 @@ app.get('/dashboard',(req,res)=>{
     res.render(path.join(__dirname,"/public/views/dashboard.ejs"),{user:req.body.u,rank:req.body.rank})
 })
 
+
 //defined function for the server
 function datelog(m){
     console.log(`[${(new Date).toString()}]:`)
@@ -85,8 +86,9 @@ app.post('/',(req,res/*,next*/)=>{
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
         if(a){
             response.output=1
+            res.body={u:ans.USER}
             let u=res.redirect('/dashboard?u='+ans.USER)
-            console.log(u);
+            console.log("resdirect "+u);
         }
         else{
             response.output=0  //password mismatch
@@ -98,6 +100,10 @@ app.post('/',(req,res/*,next*/)=>{
             }
         }
     })
+})
+app.post('/',(req,res,next)=>{
+    res.body.modified=true
+    res.next()
 })
 
 app.use(express.static(path.join(__dirname,'public')))
