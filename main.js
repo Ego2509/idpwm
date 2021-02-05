@@ -16,7 +16,7 @@ const server=http.createServer(app);
 // app.use(express.static(path.join(__dirname,'public')))
 // app.use(express.static(path.join(__dirname,'public/html/index.html')))
 app.get('/',(req,res,next)=>{
-    res.sendFile(express.static(path.join(__dirname,'public/html')))
+    res.render("/public/views/index.ejs")
 })
 
 // from the request documentation
@@ -93,11 +93,9 @@ app.post('/',(req,res/*,next*/)=>{
     })
 })
 
+app.get('/dashboard',(req,res)=>{
+    res.render("/public/views/index.ejs",{user:req.body.u,rank:req.body.rank})
+})
+
 //TODO: use routers for different paths
-
-// app.get('/dashboard',()=>{
-
-// })
-
-
 //this is a backup file

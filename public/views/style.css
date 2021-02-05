@@ -163,3 +163,8 @@ h1{
     color:var(--color5);
     background-color: #760222;
 }
+
+main{
+  float: right;
+  text-align: center;
+}
