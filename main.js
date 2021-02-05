@@ -25,6 +25,8 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.static(path.join(__dirname,'public/views')))
+app.engine('ejs', ejs.renderFile);
+app.set('view engine', 'ejs');
 
 app.get('/',(req,res,next)=>{
     res.render(path.join(__dirname,"/public/views/index.ejs"))
