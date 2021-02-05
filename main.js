@@ -25,30 +25,43 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
+function standartQuery(q){
+    if(!(/\s|\=|\;/g.test(q))){return 0}//sus injection query
+    else{
+        return db.query(q,(err,ans/*,fields*/)=>{
+            try {
+                if(err) throw(err)
+            } catch (e) {
+                console.log(`[${String(Date.now())}] query error: ${err.message}`)
+            }
+            console.log(`ans: ${JSON.stringify(ans)}`)
+            console.log(`ID-USER-PASW: ${ans["ID"]}-${ans["USER"]}-${ans["PASW"]}`)
+            // console.log(`fields: ${JSON.stringify(fields)}`) // more than needed 
+            return ans
+        })
+    }
+}
+
+
 //Login System
 //more at: https://developer.mozilla.org/en-US/docs/Web/API/Request
 app.post('/',(req,res/*,next*/)=>{
     console.log('POST /')
     console.log(req)
     res.json(req.body)// is th same as res.json(req.body)
-    let [u,p]=[req.body.u,req.body.p]
-    //working
+    let [u,p]=[req.body.u,req.body.p] //working
+    
     //login:
     //req(json) ->mysql(db col)
     //u         ->USER
     //p         ->PASW
     q=`SELECT * FROM USERS WHERE USER='${u}'`
     
-    db.query(q,(err,ans,fields)=>{
-        try {
-            if(err) throw(err)
-        } catch (e) {
-            console.log(`[${String(Date.now())}] query error: ${err.message}`)
-        }
-        console.log(`ans: ${JSON.stringify(ans)}`)
-        console.log(`fields: ${JSON.stringify(fields)}`)
-        console.log(`password match: ${p}`)
-    })
+    ans=standartQuery(q)
+    ans=(ans)?ans:()=>{
+        res.send("sus query")
+    }
+    console.log(`password match: ${p===ans["PASW"]}`)
 
 })
 
