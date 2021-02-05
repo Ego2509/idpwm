@@ -65,6 +65,10 @@ async function postLogin(user,pasw){
     response.then((data) => {
         console.log('data:', data)
         if (data.sqlia) alert("sus query...")
+        if(!data.output) alert("Wrong username or password.")
+        else{
+            fetch(response.redirect,params)
+        }
         return data
     })
     .catch(error => {
@@ -72,10 +76,7 @@ async function postLogin(user,pasw){
     })
     
     //data received
-    console.log('outerResponse'+await response);
-    if(await !response.output) alert("Wrong username or password.")
-    else{
-        fetch(response.redirect,params)
-    }
+    console.log('outerResponse'+await JSON.stringify(response));
+    
 }
 //this is a backup file
