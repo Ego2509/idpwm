@@ -25,7 +25,7 @@ app.use(express.text())
 const PORT=process.env.PORT||80;//3000;//80;
 server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
-susQuery(){
+function susQuery(){
     console.log("sus query");
     res.send("sus query")
 }
