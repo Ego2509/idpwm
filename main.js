@@ -87,7 +87,7 @@ app.post('/',(req,res/*,next*/)=>{
         if(a){
             response.output=1
             res.body={u:ans.USER}
-            let u=res.redirect('/dashboard?u='+ans.USER)
+            let u=res.redirect('/dashboard')
             console.log("resdirect "+u);
         }
         else{
