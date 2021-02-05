@@ -62,7 +62,7 @@ app.post('/',(req,res/*,next*/)=>{
     }
 
     let a=(p===ans.PASW)
-    console.log(`password match: ${a}`)
+    console.log(`password: '${p}' - match: ${a}`)
     if(a) res.send("password match")
     else res.send("password mismatch")
     
