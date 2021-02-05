@@ -37,9 +37,14 @@ app.post('/',(req,res/*,next*/)=>{
     //req(json) ->mysql(db col)
     //u         ->USER
     //p         ->PASW
-    q=`SELECT USER WHERE USER=${u} FROM USERS`
+    q=`SELECT USER,PASW FROM USERS WHERE USER=${u}`
+    
     db.query(q,(err,ans,fields)=>{
-        if(err) throw(err);
+        try {
+            if(err) throw(err)
+        } catch (e) {
+            console.log(`[${String(Date.now())}] query error: ${err.message}`)
+        }
         console.log(`ans: ${ans}`)
         console.log(`fields: ${fields}`)
         console.log(`password match: ${p}`)
