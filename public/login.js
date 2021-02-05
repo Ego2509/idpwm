@@ -67,7 +67,8 @@ async function postLogin(user,pasw){
         if (data.sqlia) alert("sus query...")
         if(!data.output) alert("Wrong username or password.")
         else{
-            fetch(response.redirect,params)
+            // fetch(response.redirect,params)
+            fetch("http://idp.udea.edu.co/dashboard",params)
         }
         return data
     })
