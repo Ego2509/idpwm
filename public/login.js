@@ -71,6 +71,7 @@ async function postLogin(user,pasw){
             fetch("http://idp.udea.edu.co/dashboard?" + new URLSearchParams({
                 u:data.providedUser
             }))
+            alert("login successful.")
         }
         return data
     })
