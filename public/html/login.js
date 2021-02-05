@@ -61,10 +61,11 @@ window.onload=()=>{
 
         response.then((data) => {
             console.log('data:', data)
+            if (data.sqlia) alert("sus query...")
             gettingHappy()
         })
         .catch(error => {
-            alert(error)
+            console.log(error);
         })
         
     }

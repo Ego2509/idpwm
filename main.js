@@ -27,7 +27,7 @@ server.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
 
 function susQuery(){
     console.log("sus query");
-    res.send("sus query")
+    res.json({sqlia:1})
 }
 
 //Login System
@@ -37,7 +37,10 @@ app.post('/',(req,res/*,next*/)=>{
     console.log(req)
     // res.json(req.body)// is th same as res.json(req.body)
     let [u,p]=[req.body.u,req.body.p] //working
-    
+    response={
+        providedUser:u,
+        providedPasw:p
+    }
     //login:
     //req(json) ->mysql(db col)
     //u         ->USER
@@ -63,9 +66,9 @@ app.post('/',(req,res/*,next*/)=>{
         //check
         let a=(p===ans.PASW)
         console.log(`PASW: '${ans.PASW}' - p: '${p}' - match: ${a}`)
-        if(a) res.send("password match")
-        else res.send("password mismatch")
-        
+        if(a) response[output]=1 //password match
+        else response[output]=0  //password mismatch
+        res.status(200).json(response)
     })
 
 
