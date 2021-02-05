@@ -39,7 +39,7 @@ window.onload=()=>{
 //          https://developer.mozilla.org/en-US/docs/Web/API/Response
 //          https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 //          https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
-function postLogin(user,pasw){
+async function postLogin(user,pasw){
     const data={u:user,p:pasw}
     console.log("sdata:"+JSON.stringify(data))
     let route="http://idp.udea.edu.co:80/"// !important -> url+"/" at the end (url+route)
@@ -72,8 +72,8 @@ function postLogin(user,pasw){
     })
     
     //data received
-    console.log('outerResponse'+response);
-    if(!response.output) alert("Wrong username or password.")
+    console.log('outerResponse'+await response);
+    if(await !response.output) alert("Wrong username or password.")
     else{
         fetch(response.redirect,params)
     }
